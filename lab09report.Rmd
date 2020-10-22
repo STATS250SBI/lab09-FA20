@@ -65,7 +65,7 @@ To standardize a random variable, we can subtract its mean and divide by its sta
 
 $$ Z = \frac{x - \mu}{\sigma}. $$
 
-**NICK: MAKE A FANCY PLOT SHOWING REGULAR NORMAL, THEN ARROW TO STD NORM W/ Z FORMULA ON TOP OF ARROW**
+![](standardization.png)
 
 ### Probability with Normal Distributions
 

@@ -6,22 +6,27 @@ plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
   checkmate::assert_numeric(shadeValues, null.ok = TRUE, max.len = 2)
   
   dots <- list(...)
-  if (any(names(dots) == "xlim")) 
+  if (any(names(dots) == "xlim")) {
     xlim <- dots$xlim
-  else xlim <- c(mean - 3*sd, mean + 3 * sd)
-  if (any(names(dots) == "xlab"))
+    dots$xlim <- NULL
+  } else xlim <- c(mean - 3*sd, mean + 3 * sd)
+  
+  if (any(names(dots) == "xlab")) {
     xlab <- dots$xlab
-  else xlab <- ""
-  if (any(names(dots) == "main"))
+    dots$xlab <- NULL
+  } else xlab <- ""
+  
+  if (any(names(dots) == "main")) {
     main <- dots$main
-  else main <- paste0("Normal(", mean, ", ", sd, ") Distribution")
+    dots$main <- NULL
+  } else main <- paste0("Normal(", mean, ", ", sd, ") Distribution")
   
   xRange <- seq(mean - 3 * sd, mean + 3 * sd, length = 300)
   height <- dnorm(xRange, mean = mean, sd = sd)
   
-  plot(height ~ xRange, type = "l", axes = F, ylab = "",
-       xlab = xlab, main = main, xlim = xlim, frame.plot = F, 
-       ...)
+  do.call(plot, list(height ~ xRange, type = "l", axes = F, ylab = "",
+                     xlab = xlab, main = main, xlim = xlim, frame.plot = F, 
+                     dots))
   axis(1, at = seq(mean - 3 * sd, mean + 3 * sd, sd), pos = 0)
   
   if (length(shadeValues) == 2) {
