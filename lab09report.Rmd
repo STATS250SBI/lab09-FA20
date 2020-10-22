@@ -12,6 +12,8 @@ theme: lumen
   
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+if (!require(checkmate))
+  install.packages('checkmate')
 source("plotNorm.R")
 ```
 
@@ -75,6 +77,15 @@ Given a normally-distributed random variable $X$, the probability of taking on a
 plotNorm(mean = 45, sd = 6, shadeValues = 35, direction = "less")
 ```
 
+To make this diagram, we're using a function we built for you called `plotNorm()`. You pass `plotNorm()` the following arguments:
+
+- `mean`: the mean of the normal distribution you'd like to draw ($\mu$)
+- `sd`: the standard deviation of the normal distribution you'd like to draw ($\sigma$)
+- `shadeValues` (optional): either a number or a vector of two numbers that are the boundaries of the region you'd like to shade.
+- `direction`: where to shade
+- `col.shade`: the color to use when shading
+- any other graphical parameters you want to use to control the appearance of the plot.
+
 We can find the size of the shaded area (and thus the probability that X is in that region) using the `pnorm()` function:
 
 ```{r pnormExample}
@@ -112,7 +123,7 @@ Same answers! Phew. Still not magic, though.
 
 How could we find P(35 < X < 50), again if $X$ has a N(45, 6) distribution?
 
-```{r plot2}
+```{r plot3}
 plotNorm(mean = 45, sd = 6, shadeValues = c(35, 50), direction = "inside",
          col.shade = "forestgreen")
 ```
@@ -136,7 +147,7 @@ Notice we get approximately 35 back! (We didn't get exactly 35 because we rounde
 
 Let's find the 30th percentile of the standard normal distribution, N(0, 1).
 
-```{r qnorm}
+```{r qnorm2}
 qnorm(p = 0.3) # notice no mean or sd arguments! The defaults are 0 and 1.
 qnorm(p = 0.3, mean = 0, sd = 1)
 ```
@@ -163,9 +174,9 @@ Depending on your instruction method (in person, synchronous remote, asynchronou
 
 **Collaborators:** If applicable, replace this text with the names of anyone you collaborated with on this project.
 
-*The distribution of passenger vehicle speeds traveling on the Interstate 5 Freeway (I-5) in California is nearly normal with a mean of 72.6 miles per hour and a standard deviation of 4.78 miles per hour. For each question, find your answer using R, and write your answer below your chunk.*
+*The distribution of passenger vehicle speeds traveling on the Interstate 5 Freeway (I-5) in California is nearly normal with a mean of 72.6 miles per hour and a standard deviation of 4.78 miles per hour. For each question, find your answer using R and write your answer below your chunk.*
 
->**1.** What percent of passenger vehicles travel slower than 80 miles per hour on the I-5? 
+>**1.** What percent of passenger vehicles travel slower than 80 miles per hour on the I-5?
   
 ```{r tryIt1, error = T}
 # Replace this comment with code required for Try It 1. (Remember that this text is a comment, so R ignores it; you can delete it if you want.) If you don't delete it, **start your code on a new line that doesn't start with #**

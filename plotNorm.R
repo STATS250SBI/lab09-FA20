@@ -3,11 +3,11 @@ plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
                      col.shade = "cornflowerblue",
                      ...) {
   
-  checks <- makeAssertCollection()
+  checks <- checkmate::makeAssertCollection()
   checkmate::assert_numeric(shadeValues, null.ok = TRUE, max.len = 2, add = checks)
   checkmate::assert_number(mean, na.ok = FALSE, finite = TRUE, add = checks)
   checkmate::assert_number(sd, na.ok = FALSE, finite = TRUE, add = checks)
-  reportAssertions(checks)
+  checkmate::reportAssertions(checks)
   
   dots <- list(...)
   if (any(names(dots) == "xlim")) {
@@ -55,6 +55,10 @@ plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
               c(0, shadeHeight[101:200], 0), col = col.shade)
     }
   } else if (length(shadeValues == 1)) {
+    if (!any(c("less", "greater") == direction))
+      stop(paste("When you provide one shadeValue for shading the plot,",
+                 "you must also specify direction as 'less' or 'greater'.",
+                 "Fix this and try again."))
     if (direction == "less") {
       xShade <- seq(mean - 3 * sd, shadeValues, length = 100)
       shadeHeight <- dnorm(xShade, mean = mean, sd = sd)
