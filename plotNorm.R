@@ -1,0 +1,62 @@
+plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
+                     direction = c("less", "greater", "outside", "inside"),
+                     col.shade = "cornflowerblue",
+                     ...) {
+  
+  checkmate::assert_numeric(shadeValues, null.ok = TRUE, max.len = 2)
+  
+  dots <- list(...)
+  if (any(names(dots) == "xlim")) 
+    xlim <- dots$xlim
+  else xlim <- c(mean - 3*sd, mean + 3 * sd)
+  if (any(names(dots) == "xlab"))
+    xlab <- dots$xlab
+  else xlab <- ""
+  if (any(names(dots) == "main"))
+    main <- dots$main
+  else main <- paste0("Normal(", mean, ", ", sd, ") Distribution")
+  
+  xRange <- seq(mean - 3 * sd, mean + 3 * sd, length = 300)
+  height <- dnorm(xRange, mean = mean, sd = sd)
+  
+  plot(height ~ xRange, type = "l", axes = F, ylab = "",
+       xlab = xlab, main = main, xlim = xlim, frame.plot = F, 
+       ...)
+  axis(1, at = seq(mean - 3 * sd, mean + 3 * sd, sd), pos = 0)
+  
+  if (length(shadeValues) == 2) {
+    shadeValues <- sort(shadeValues)
+    if (!any(c("outside", "inside") == direction))
+      stop(paste("When you provide two shadeValues for shading the plot,",
+                 "you must also specify direction as 'inside' or 'outside'.",
+                 "Fix this and try again."))
+    else if (direction == "inside") {
+      xShade <- seq(shadeValues[1], shadeValues[2], length = 100)
+      shadeHeight <- dnorm(xShade, mean = mean, sd = sd)
+      polygon(c(xShade[1], xShade, xShade[100]), 
+              c(0, shadeHeight, 0), col = col.shade)
+    }
+    else if (direction == "outside") {
+      xShade <- c(seq(min(xRange), shadeValues[1], length = 100),
+                  seq(shadeValues[2], max(xRange), length = 100))
+      shadeHeight <- dnorm(xShade, mean = mean, sd = sd)
+      polygon(c(xShade[1], xShade[1:100], shadeValues[1]), 
+              c(0, shadeHeight[1:100], 0), col = col.shade)
+      polygon(c(shadeValues[2], xShade[101:200], xShade[200]), 
+              c(0, shadeHeight[101:200], 0), col = col.shade)
+    }
+  } else if (length(shadeValues == 1)) {
+    if (direction == "less") {
+      xShade <- seq(mean - 3 * sd, shadeValues, length = 100)
+      shadeHeight <- dnorm(xShade, mean = mean, sd = sd)
+      polygon(c(xShade[1], xShade, xShade[100]), c(0, shadeHeight, 0),
+              col = col.shade)
+    } else if (direction == "greater") {
+      xShade <- seq(shadeValues, mean + 3 * sd, length = 100)
+      shadeHeight <- dnorm(xShade, mean = mean, sd = sd)
+      polygon(c(xShade[1], xShade, xShade[100]), c(0, shadeHeight, 0),
+              col = col.shade)
+    }
+  }
+  
+}
