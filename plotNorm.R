@@ -3,7 +3,11 @@ plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
                      col.shade = "cornflowerblue",
                      ...) {
   
-  checkmate::assert_numeric(shadeValues, null.ok = TRUE, max.len = 2)
+  checks <- makeAssertCollection()
+  checkmate::assert_numeric(shadeValues, null.ok = TRUE, max.len = 2, add = checks)
+  checkmate::assert_number(mean, na.ok = FALSE, finite = TRUE, add = checks)
+  checkmate::assert_number(sd, na.ok = FALSE, finite = TRUE, add = checks)
+  reportAssertions(checks)
   
   dots <- list(...)
   if (any(names(dots) == "xlim")) {
