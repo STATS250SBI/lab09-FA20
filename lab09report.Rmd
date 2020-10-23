@@ -35,7 +35,7 @@ We're going to be working with functions that have multiple arguments. Make sure
   
 ## Lab Tutorial
   
-This week, we're going to talk about the *normal distribution*. A "distribution" refers to the possible values a random varible can take as well as the probability that it takes those values. It is commonly used to approximate all sorts of things in nature and life.
+This week, we're going to talk about the *normal distribution*. A "distribution" refers to the possible values a random variable can take as well as the probability that it takes those values. It is commonly used to approximate all sorts of things in nature and life.
 
 Let's take a look at the normal distribution. We've written a function for you to make pretty plots of this.
 
@@ -131,9 +131,10 @@ plotNorm(mean = 45, sd = 6, shadeValues = c(35, 50), direction = "inside",
 ```{r pnormMiddleExample}
 pnorm(50, mean = 45, sd = 6) - pnorm(35, mean = 45, sd = 6)
 ```
+
 ### Percentiles
 
-A **percentile** is the percent of possible values of a random variable that are less than a particular observation. For example, scoring in the 80th percentile on an exam means you got a higher score than 80% of test takers. Woo!
+The $x$th **percentile** of a distribution is the value of a random variable such that $x$% of the distribution is less than that value. For example, scoring in the 80th percentile on an exam means you got a higher score than 80% of test takers (equivalently, 80% of test takers scored less than you). Woo!
 
 We can figure out percentiles from the normal distribution using the `qnorm()` function. Here, the 80th percentile refers to the number such that 80% of the area of the distribution is to the *left* of that number.
 
@@ -158,9 +159,16 @@ Let's use this z-score to find the value of $X$, which has a N(45, 6) distributi
 
 $$ Z = \frac{x - \mu}{\sigma} $$.
 
-```{r findXfromZ}
+```{r findXfromZ, error = T}
 # Use R as a calculator to find the value of X that corresponds to the 30th
 # percentile of the standard normal distribution.
+
+```
+
+Now let's double-check our answer using `qnorm()`:
+
+```{r checkZ, error = T}
+# Use qnorm() to find the 30th percentile of the N(45, 6) distribution.
 
 ```
 
@@ -174,7 +182,7 @@ Depending on your instruction method (in person, synchronous remote, asynchronou
 
 **Collaborators:** If applicable, replace this text with the names of anyone you collaborated with on this project.
 
-*The distribution of passenger vehicle speeds traveling on the Interstate 5 Freeway (I-5) in California is nearly normal with a mean of 72.6 miles per hour and a standard deviation of 4.78 miles per hour. For each question, find your answer using R and write your answer below your chunk.*
+*The distribution of passenger vehicle speeds traveling on the Interstate 5 Freeway (I-5) in California is nearly normal with a mean of 72.6 miles per hour and a standard deviation of 4.78 miles per hour. For each question, find your answer using R and write your answer below your chunk. Also include a normal graph with appropriate shading.*
 
 >**1.** What percent of passenger vehicles travel slower than 80 miles per hour on the I-5?
   
@@ -236,11 +244,11 @@ Replace this text with your answer to Try It 6.
 
 Replace this text with your written answer for Dive Deeper 1.
 
-> **2.** Thinking back to the I-5 example, did you notice that each question about a percentage was associated with a direction (e.g. "slower", "between", "faster"). Think about why this is the case. Can we find the percentage of the graph that represents a vehicle traveling exactly 80 miles per hour? Why or why not?
+> **2.** Thinking back to the I-5 example, did you notice that each question about a percentage was associated with a direction (e.g. "slower", "between", "faster")? Think about why this is the case. Can we find the percentage of the graph that represents a vehicle traveling exactly 80 miles per hour? Why or why not?
 
 Replace this text with your written answer for Dive Deeper 2.
 
-> **3.** Let the variable Z represent a standardized test score which follows the standard normal distribution. Suppose a standardized test score was 1.23. How many standard deviations was the test score above the mean test score?
+> **3.** Let the variable Z represent a standardized test score which follows the standard normal distribution. Suppose a student's score on this test was 1.23. How many standard deviations was the test score above the mean test score?
 
 Replace this text with your written answer to Dive Deeper 3.
 
@@ -258,15 +266,15 @@ At the top of the document, make sure you've changed the `author` field to your 
 
 ### Submission instructions
 #### If you're using RStudio Cloud
-1. In the Files pane, check the box next to `lab07report.html`.
+1. In the Files pane, check the box next to `lab09report.html`.
 2. Click More > Export...
-3. Click Download and save the file on your computer in a folder you'll remember and be able to find later. You can just call the file `lab07report.html` or whatever else you'd like (as  long as you remember what you called it).
+3. Click Download and save the file on your computer in a folder you'll remember and be able to find later. You can just call the file `lab09report.html` or whatever else you'd like (as  long as you remember what you called it).
 
 #### If you're using RStudio installed on your computer
-1. locate the `lab06report.html` file on your computer. The file will be saved in the location indicated at the top of the files pane.
+1. locate the `lab09report.html` file on your computer. The file will be saved in the location indicated at the top of the files pane.
 
 #### Submission to Canvas
 
-1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 7", and open the assignment. Click "Submit Assignment". 
-2. Towards the bottom of the page, you'll be able to choose `lab07report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
+1. Click the "Assignments" panel on the left side of the page. Scroll to find "Lab 9", and open the assignment. Click "Submit Assignment". 
+2. Towards the bottom of the page, you'll be able to choose `lab09report.html` from the folder you saved it in from RStudio Cloud or noted if you're using RStudio Desktop. **You will only be able to upload a .html file -- do not upload any other file type.**
   3. Click "Submit Assignment". You're done! 
