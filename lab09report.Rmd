@@ -157,7 +157,7 @@ qnorm(p = 0.3, mean = 0, sd = 1)
 
 Let's use this z-score to find the value of $X$, which has a N(45, 6) distribution, that corresponds to the 30th percentile. Remember that 
 
-$$ Z = \frac{x - \mu}{\sigma} $$.
+$$ Z = \frac{x - \mu}{\sigma}. $$
 
 ```{r findXfromZ, error = T}
 # Use R as a calculator to find the value of X that corresponds to the 30th
@@ -174,7 +174,7 @@ Now let's double-check our answer using `qnorm()`:
 
 
 ## Try It!
-Depending on your instruction method (in person, synchronous remote, asynchronous remote), complete the following exercises collaboratively. 
+Depending on your instruction method (synchronous remote, asynchronous remote), complete the following exercises collaboratively. 
 
 1. **In person:** Form groups of 2-4 with those around you (maintaining physical distance). Your instructor will provide additional details.
 1. **Synchronous remote:** You will be placed in a Zoom breakout room to work together in small groups. 
