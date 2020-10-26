@@ -30,8 +30,8 @@ plotNorm <- function(mean = 0, sd = 1, shadeValues = NULL,
   xRange <- seq(mean - 3 * sd, mean + 3 * sd, length = 300)
   height <- dnorm(xRange, mean = mean, sd = sd)
   
-  do.call(plot, list(height ~ xRange, type = "l", axes = F, ylab = "",
-                     xlab = xlab, main = main, xlim = xlim, frame.plot = F, 
+  do.call(plot, c(list(height ~ xRange, type = "l", axes = F, ylab = "",
+                     xlab = xlab, main = main, xlim = xlim, frame.plot = F), 
                      dots))
   axis(1, at = c(seq(mean - 3 * sd, mean + 3 * sd, sd), shadeValues),
        labels = prettyNum(c(seq(mean - 3 * sd, mean + 3 * sd, sd), shadeValues)),
